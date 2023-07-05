@@ -8,7 +8,7 @@ public class SudokuGenerator {
 
     public static void sudokuCreator(SudokuBoard sudokuBoard) {
         fillBoard(
-                generateSequence.generateSudoku(sudokuBoard.getSize(),
+                GenerateSequence.generateSudoku(sudokuBoard.getSize(),
                         sudokuBoard.getSquareSize().size),
                 sudokuBoard);
     }
