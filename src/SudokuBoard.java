@@ -4,17 +4,22 @@ public class SudokuBoard {
 
     private final int size;
     private SudokuSizes squareSize;
-    private List<SudokuSquare> body;
+    private List<SudokuSquare> bodySolve;
+    private List<SudokuSquare> condition;
 
     private SudokuBoard(SudokuSizes sizes) {
         int currentSize = sizes.size;
         this.squareSize = sizes;
         this.size = currentSize * currentSize;
-        this.body = fillSudokuBody(sizes);
+        this.bodySolve = fillSudokuBody(sizes);
     }
 
     public static SudokuBoard builder(SudokuSizes sudokuSizes) {
         return new SudokuBoard(sudokuSizes);
+    }
+
+    public static void createSudokuStartCondition (){
+
     }
 
     private List<SudokuSquare> fillSudokuBody(SudokuSizes size) {
@@ -29,7 +34,7 @@ public class SudokuBoard {
         List<Integer> row = new ArrayList<>();
         int[] sqAndRow = getIndexRowInSquare(rowNumber);
         for (int square = 0; square < squareSize.size; square++) {
-            row.addAll(body.get(squareSize.size * sqAndRow[0] + square).getRow(sqAndRow[1]));
+            row.addAll(bodySolve.get(squareSize.size * sqAndRow[0] + square).getRow(sqAndRow[1]));
         }
         return row;
     }
@@ -45,7 +50,7 @@ public class SudokuBoard {
         List<Integer> column = new ArrayList<>();
         int[] sqAndColumn = getIndexRowInSquare(columnNumber);
         for (int square = sqAndColumn[0]; square < squareSize.size*squareSize.size; square +=squareSize.size) {
-            column.addAll(body.get(square).getColumn(sqAndColumn[1]));
+            column.addAll(bodySolve.get(square).getColumn(sqAndColumn[1]));
         }
         return column;
     }
@@ -59,7 +64,7 @@ public class SudokuBoard {
     }
 
     public List<SudokuSquare> getSudokuBody() {
-        return body;
+        return bodySolve;
     }
 
     @Override
