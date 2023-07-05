@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class generateSequence {
+public class GenerateSequence {
 
     private static final int EMPTY_CELL = 0;
 
