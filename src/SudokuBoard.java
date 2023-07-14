@@ -5,21 +5,24 @@ public class SudokuBoard {
     private final int size;
     private SudokuSizes squareSize;
     private List<SudokuSquare> bodySolve;
-    private List<SudokuSquare> condition;
+    private List<SudokuSquare> bodyWithHidedNumbers;
 
     private SudokuBoard(SudokuSizes sizes) {
         int currentSize = sizes.size;
         this.squareSize = sizes;
         this.size = currentSize * currentSize;
         this.bodySolve = fillSudokuBody(sizes);
+        this.bodyWithHidedNumbers = new LinkedList<>();
     }
 
     public static SudokuBoard builder(SudokuSizes sudokuSizes) {
         return new SudokuBoard(sudokuSizes);
     }
 
-    public static void createSudokuStartCondition (){
-
+    public void createStartingCondition(){
+        for (SudokuSquare tempSq : bodySolve){
+            bodyWithHidedNumbers.add(tempSq.hideSomeNumbers());
+        }
     }
 
     private List<SudokuSquare> fillSudokuBody(SudokuSizes size) {

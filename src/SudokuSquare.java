@@ -52,21 +52,22 @@ public class SudokuSquare {
         Random rand = new Random();
         SudokuSquare result = new SudokuSquare(this.size);
         int numbersToHide = rand.nextInt(size, size * 2);
-        Set<Integer> randomIndexes = new HashSet<>();
-        getRandomIndexes(randomIndexes, numbersToHide, rand);
+        //Set<Integer> randomIndexes = new HashSet<>();
+        Integer[] randomIndexes = Arrays.copyOfRange(this.body, 0, numbersToHide);
+        //getRandomIndexes(randomIndexes, numbersToHide, rand);
         for (Integer index : randomIndexes){
-            body[index] = 0;
+            body[index-1] = 0;
         }
         return result;
     }
 
-    private void getRandomIndexes(Set<Integer> indexes, int setSize, Random random){
-        while (indexes.size() < setSize) {
-            if (!indexes.add(random.nextInt(size*2))){
-                getRandomIndexes(indexes, setSize, random);
-            }
-        }
-    }
+//    private void getRandomIndexes(Set<Integer> indexes, int setSize, Random random){
+//        while (indexes.size() < setSize) {
+//            if (!indexes.add(random.nextInt(size*2))){
+//                getRandomIndexes(indexes, setSize, random);
+//            }
+//        }
+//    }
 
 //    public void fillSquare(List<Integer> numbers) {
 //        this.body = new ArrayList<>(numbers);
